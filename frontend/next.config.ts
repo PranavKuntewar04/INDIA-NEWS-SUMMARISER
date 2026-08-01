@@ -1,15 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* API proxy — forward /api/* to the Railway backend */
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001"}/api/:path*`,
-      },
-    ];
-  },
+  /* API routes are now handled natively by Next.js App Router */
+  /* No rewrites needed — backend is merged into this project */
 };
 
 export default nextConfig;

@@ -1,0 +1,141 @@
+{
+  "id": "summary_2026-07-27T18-00-00Z",
+  "timestamp": "2026-07-27T18:00:00Z",
+  "generatedAt": "2026-07-27T18:02:34Z",
+  "sourcesUsed": [
+    "indiatoday.in",
+    "ndtv.com",
+    "timesofindia.indiatimes.com",
+    "hindustantimes.com",
+    "indianexpress.com"
+  ],
+  "totalArticlesProcessed": 47,
+  "totalArticlesAfterDedup": 32,
+  "categories": [
+    {
+      "name": "Politics",
+      "icon": "🏛️",
+      "articleCount": 6,
+      "summaryPoints": [
+        "Parliament passed the Digital India Bill 2026 with bipartisan support, introducing new data privacy safeguards.",
+        "The Election Commission announced dates for upcoming state elections in three states.",
+        "Opposition parties form a coalition to challenge the new education policy in the Supreme Court."
+      ],
+      "sources": [
+        {
+          "title": "Parliament Passes Sweeping Data Protection Bill",
+          "url": "https://www.ndtv.com/india/parliament-passes-digital-india-bill-12345",
+          "source": "ndtv.com",
+          "publishedAt": "2026-07-27T17:30:00Z"
+        },
+        {
+          "title": "Election Commission Sets Dates for Three State Polls",
+          "url": "https://www.indiatoday.in/elections/election-dates-2026",
+          "source": "indiatoday.in",
+          "publishedAt": "2026-07-27T16:45:00Z"
+        }
+      ]
+    },
+    {
+      "name": "Technology",
+      "icon": "💻",
+      "articleCount": 8,
+      "summaryPoints": [
+        "India's AI Mission receives $1.2B funding boost from Cabinet, targeting compute capacity expansion.",
+        "ISRO outlines Chandrayaan-4 objectives: sample return mission with JAXA collaboration.",
+        "Reliance Jio launches India's first domestic AI cloud infrastructure."
+      ],
+      "sources": [
+        {
+          "title": "India's AI Mission Gets $1.2B Funding Boost",
+          "url": "https://www.ndtv.com/technology/ai-mission-funding-boost",
+          "source": "ndtv.com",
+          "publishedAt": "2026-07-27T15:00:00Z"
+        },
+        {
+          "title": "ISRO Outlines Next Lunar Mission Objectives",
+          "url": "https://www.indiatoday.in/science/isro-chandrayaan-4",
+          "source": "indiatoday.in",
+          "publishedAt": "2026-07-27T17:10:00Z"
+        }
+      ]
+    },
+    {
+      "name": "Business",
+      "icon": "💼",
+      "articleCount": 5,
+      "summaryPoints": [
+        "Sensex hits record high on RBI rate pause — repo rate held at 6.5% for the sixth consecutive time.",
+        "Markets rally led by banking and auto sector stocks; Nifty crosses 25,000 mark.",
+        "Inflation projected to moderate, though food prices remain a concern for Q3 outlook."
+      ],
+      "sources": [
+        {
+          "title": "Sensex Hits Record High on RBI Rate Pause",
+          "url": "https://economictimes.indiatimes.com/sensex-record-rbi",
+          "source": "economictimes.indiatimes.com",
+          "publishedAt": "2026-07-27T17:40:00Z"
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "icon": "🏥",
+      "articleCount": 4,
+      "summaryPoints": [
+        "National Digital Health Mission expands to rural areas — over 50 million ABHA IDs generated in tier-3 cities.",
+        "Telemedicine consultations see a 40% month-over-month increase across government hospitals.",
+        "Integration with local PHCs aims to streamline patient records nationwide."
+      ],
+      "sources": [
+        {
+          "title": "National Digital Health Mission Expands to Rural Areas",
+          "url": "https://indianexpress.com/article/health/digital-health-mission-rural",
+          "source": "indianexpress.com",
+          "publishedAt": "2026-07-27T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "name": "Sports",
+      "icon": "⚽",
+      "articleCount": 5,
+      "summaryPoints": [
+        "BCCI announces new media rights deal structure — separate packages for linear TV and digital streaming.",
+        "Valuation expected to exceed previous cycle by 25%, signaling growing digital sports consumption.",
+        "New focus on regional language broadcasts for wider reach across tier-2 and tier-3 cities."
+      ],
+      "sources": [
+        {
+          "title": "BCCI Announces New Media Rights Deal Structure",
+          "url": "https://www.espncricinfo.com/story/bcci-media-rights-2026",
+          "source": "espncricinfo.com",
+          "publishedAt": "2026-07-26T15:00:00Z"
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "icon": "📚",
+      "articleCount": 4,
+      "summaryPoints": [
+        "UGC releases new guidelines for AI integration in higher education curricula across all central universities.",
+        "IIT admissions see 12% increase in applications from rural districts following scholarship expansion.",
+        "NEP 2026 amendments propose mandatory coding education from grade 6 onwards."
+      ],
+      "sources": [
+        {
+          "title": "UGC Releases AI Education Guidelines",
+          "url": "https://timesofindia.indiatimes.com/education/ugc-ai-guidelines",
+          "source": "timesofindia.indiatimes.com",
+          "publishedAt": "2026-07-27T10:30:00Z"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "modelUsed": "gemini-2.5-flash-lite",
+    "pipelineDurationMs": 45200,
+    "errors": []
+  }
+}

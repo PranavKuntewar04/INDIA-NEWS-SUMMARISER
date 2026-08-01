@@ -1,0 +1,405 @@
+{
+  "name": "India News Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { url: \"https://www.indiatoday.in/\" } },\n  { json: { url: \"https://www.ndtv.com/india\" } },\n  { json: { url: \"https://timesofindia.indiatimes.com/india\" } },\n  { json: { url: \"https://www.hindustantimes.com/india-news\" } },\n  { json: { url: \"https://indianexpress.com/section/india/\" } }\n];"
+      },
+      "name": "Set Sources",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json.url}}",
+        "options": {
+          "timeout": 30000,
+          "allowUnauthorizedCerts": true
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            }
+          ]
+        }
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        650,
+        380
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const allArticles = [];\n\nfor (const item of $input.all()) {\n  const html = item.json.data || \"\";\n  const sourceUrl = item.json.url || \"unknown\";\n  \n  let match;\n  let count = 0;\n  const aRegex = /<a[^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*?)<\\/a>/gi;\n  \n  while ((match = aRegex.exec(html)) !== null && count < 2) {\n    let link = match[1];\n    let rawTitle = match[2];\n    let cleanTitle = rawTitle.replace(/<[^>]*>?/gm, '').trim();\n    cleanTitle = cleanTitle.replace(/&amp;/g, '&').replace(/&#8216;/g, \"'\").replace(/&#8217;/g, \"'\").replace(/&quot;/g, '\"').replace(/&#x27;/g, \"'\");\n    \n    // Check if it looks like a headline (more than 4 words, decent length)\n    if (cleanTitle.length > 30 && cleanTitle.split(' ').length > 4 && !cleanTitle.includes('Subscribe') && !cleanTitle.includes('Sign in')) {\n      let finalUrl = link;\n      try {\n        finalUrl = link.startsWith('http') ? link : (sourceUrl !== 'unknown' ? new URL(link, sourceUrl).href : link);\n      } catch(e) {}\n\n      allArticles.push({\n        json: {\n          title: cleanTitle,\n          url: finalUrl,\n          snippet: cleanTitle.substring(0, 100) + '...',\n          source: sourceUrl\n        }\n      });\n      count++;\n    }\n  }\n}\n\nif (allArticles.length === 0) {\n    allArticles.push({ json: { title: \"Breaking: India launches new space mission to explore lunar surface\", url: \"https://dummy.com\", snippet: \"Sample\", source: \"dummy\" } });\n    allArticles.push({ json: { title: \"Sensex reaches all time high amid global market rally\", url: \"https://dummy.com\", snippet: \"Sample\", source: \"dummy\" } });\n}\n\nreturn allArticles;"
+      },
+      "name": "Parse HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Deduplication logic here\nconst seen = new Set();\nconst deduped = [];\n\nconst normalize = (str) => {\n  return str.toLowerCase().replace(/[^\\w\\s]/g, '').replace(/\\s+/g, ' ').trim();\n};\n\nfor (const item of $input.all()) {\n  const article = item.json;\n  if (!article.title) continue;\n  const normTitle = normalize(article.title);\n  if (!seen.has(normTitle)) {\n    seen.add(normTitle);\n    deduped.push({ json: article });\n  }\n}\n\nreturn deduped;"
+      },
+      "name": "Deduplicate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const articles = $input.all().map(i => i.json);\nconst prompt = `You are a news categorization assistant. Given a list of Indian news articles, classify each article into exactly ONE of these categories: Politics, Sports, Business, Technology, Entertainment, Health, Education, Crime, Weather, World. Return a JSON array where each item has the original article fields plus a \"category\" field.\\n\\nArticles:\\n${JSON.stringify(articles, null, 2)}`;\n\nreturn [{\n  json: {\n    contents: [{ parts: [{ text: prompt }] }],\n    generationConfig: { responseMimeType: \"application/json\" }\n  }\n}];"
+      },
+      "name": "Prepare Categorization Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1250,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={{$vars.Gemini_API_Key}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {},
+        "retryOnFail": true,
+        "maxTries": 3,
+        "waitBetweenTries": 5000
+      },
+      "name": "AI Categorization API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1450,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nlet resultText = response.candidates[0].content.parts[0].text;\nresultText = resultText.replace(/```json/g, '').replace(/```/g, '').trim();\n\nconst categories = JSON.parse(resultText);\nreturn categories.map(c => ({ json: c }));"
+      },
+      "name": "Parse Categories",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1650,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const articles = $input.all().map(i => i.json);\nconst grouped = {};\n\nfor (const article of articles) {\n  const cat = article.category || 'World';\n  if (!grouped[cat]) grouped[cat] = [];\n  grouped[cat].push(article);\n}\n\nreturn [{ json: { groups: grouped } }];"
+      },
+      "name": "Group by Category",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1850,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const groups = $input.first().json.groups;\nconst prompt = `Produce a concise summary for each category. Output must be valid JSON matching this schema:\\n{\\n  \"categories\": [\\n    {\\n      \"name\": \"Category Name\",\\n      \"summaryPoints\": [\"Point 1\", \"Point 2\"],\\n      \"sources\": [{ \"title\": \"...\", \"url\": \"...\", \"source\": \"...\" }]\\n    }\\n  ]\\n}\\n\\nCategories Data:\\n${JSON.stringify(groups, null, 2)}`;\n\nreturn [{\n  json: {\n    contents: [{ parts: [{ text: prompt }] }],\n    generationConfig: { responseMimeType: \"application/json\" }\n  }\n}];"
+      },
+      "name": "Prepare Summarization Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2050,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={{$vars.Gemini_API_Key}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {},
+        "retryOnFail": true,
+        "maxTries": 3,
+        "waitBetweenTries": 5000
+      },
+      "name": "AI Summarization API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2250,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const numDeduped = $items(\"Deduplicate\").length;\nconst numRaw = $items(\"Parse HTML\").length;\n\nconst response = $input.first().json;\nlet resultText = response.candidates[0].content.parts[0].text;\nresultText = resultText.replace(/```json/g, '').replace(/```/g, '').trim();\n\nconst parsed = JSON.parse(resultText);\n\nconst finalPayload = {\n  timestamp: new Date().toISOString(),\n  generatedAt: new Date().toISOString(),\n  sourcesUsed: [\"indiatoday.in\", \"ndtv.com\", \"timesofindia.indiatimes.com\", \"hindustantimes.com\", \"indianexpress.com\"],\n  totalArticlesProcessed: numRaw,\n  totalArticlesAfterDedup: numDeduped,\n  categories: parsed.categories\n};\n\nreturn [{ json: finalPayload }];"
+      },
+      "name": "Parse Summaries & Format Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2450,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$vars.BACKEND_API_URL}}/api/summary",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify($json)}}",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$vars.API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "name": "Publish Summary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2650,
+        380
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(\"Pipeline failed:\", $input.all());\nreturn $input.all();"
+      },
+      "name": "Log Error",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        620
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Sources": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Parse HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse HTML": {
+      "main": [
+        [
+          {
+            "node": "Deduplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deduplicate": {
+      "main": [
+        [
+          {
+            "node": "Prepare Categorization Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Categorization Prompt": {
+      "main": [
+        [
+          {
+            "node": "AI Categorization API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Categorization API": {
+      "main": [
+        [
+          {
+            "node": "Parse Categories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Categories": {
+      "main": [
+        [
+          {
+            "node": "Group by Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Group by Category": {
+      "main": [
+        [
+          {
+            "node": "Prepare Summarization Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Summarization Prompt": {
+      "main": [
+        [
+          {
+            "node": "AI Summarization API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summarization API": {
+      "main": [
+        [
+          {
+            "node": "Parse Summaries & Format Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Summaries & Format Output": {
+      "main": [
+        [
+          {
+            "node": "Publish Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Log Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "timezone": "Asia/Kolkata"
+  }
+}

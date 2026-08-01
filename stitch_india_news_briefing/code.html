@@ -1,0 +1,748 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>India News Briefing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f9f9ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "on-error": "#ffffff",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#575e70",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-tertiary-container": "#ffd2be",
+                    "on-surface-variant": "#464555",
+                    "on-secondary-fixed-variant": "#404758",
+                    "secondary-fixed": "#dce2f7",
+                    "on-primary-container": "#dad7ff",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-tint": "#4d44e3",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "surface-container-highest": "#dce2f3",
+                    "outline": "#777587",
+                    "inverse-surface": "#2a313d",
+                    "surface-container-high": "#e2e8f8",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#a44100",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "primary-fixed": "#e2dfff",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-variant": "#dce2f3",
+                    "tertiary": "#7e3000",
+                    "outline-variant": "#c7c4d8",
+                    "surface-dim": "#d3daea",
+                    "secondary-container": "#d9dff5",
+                    "primary-container": "#4f46e5",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-container": "#5c6274",
+                    "primary": "#3525cd",
+                    "on-background": "#151c27",
+                    "surface-container": "#e7eefe",
+                    "on-tertiary-fixed": "#351000",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Outfit"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "Outfit"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Outfit"
+                    ],
+                    "display-lg-mobile": [
+                            "Outfit"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Base styles */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        .dark body {
+            background-color: #0F172A;
+            color: #F8FAFC;
+        }
+
+        /* Skeleton Animation */
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .skeleton {
+            position: relative;
+            overflow: hidden;
+            background-color: theme('colors.surface-variant');
+        }
+        .dark .skeleton {
+             background-color: theme('colors.inverse-surface');
+        }
+        .skeleton::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.2) 20%,
+                rgba(255, 255, 255, 0.5) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 2s infinite;
+        }
+        .dark .skeleton::after {
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0)
+            );
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+        .animate-pulse-dot {
+            animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col transition-colors duration-300">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-surface/80 dark:bg-inverse-surface/90 border-b border-outline-variant shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="text-2xl">🇮🇳</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-tertiary">
+                    India News Briefing
+                </h1>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex gap-stack-lg items-center"><a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary font-label-md text-label-md" href="#">Latest</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed hover:transition-colors font-label-md text-label-md" href="#">Policy</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed hover:transition-colors font-label-md text-label-md" href="#">Tech</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed hover:transition-colors font-label-md text-label-md" href="#">Finance</a></nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-inverse-surface/10 dark:bg-inverse-surface px-3 py-1.5 rounded-full">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot"></div>
+<span class="font-label-sm text-label-sm text-on-surface dark:text-on-primary">Live</span>
+</div>
+<div class="hidden sm:block text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant" id="last-updated">Updated 1m ago</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[100px] pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Welcome Section -->
+<section class="mb-stack-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant uppercase tracking-wider">AI Curated Synthesis</p>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface dark:text-on-primary mb-2">Executive Summary</h2>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant max-w-2xl">High-signal, low-noise briefings on the critical developments shaping India today. Summarized by AI, verifiable via source links.</p>
+</section>
+<!-- Error State (Hidden by default) -->
+<div class="hidden flex flex-col items-center justify-center py-stack-lg bg-error-container/20 rounded-xl border border-error-container text-center" id="error-state">
+<span class="material-symbols-outlined text-error text-4xl mb-2" style="font-variation-settings: 'FILL' 1;">error</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-2">Unable to load briefings</h3>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant mb-4">Please check your connection and try again.</p>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors" onclick="fetchLatestNews()">Retry</button>
+</div>
+<!-- News Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="news-grid" style="display: grid;">
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">🏛️</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Politics</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">Parliament Passes Sweeping Data Protection Bill</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Establishes strict guidelines for cross-border data transfer.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Mandates explicit user consent for processing personal data.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Creates Data Protection Board to oversee compliance and impose fines.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            The Hindu
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-27T15:25:37.149Z">31 minutes ago</span>
+                    </div>
+                </article>
+                
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">💻</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Technology</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">India's AI Mission Gets $1.2B Funding Boost</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Cabinet approves massive investment to build compute capacity.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Aims to procure 10,000+ GPUs for public-private partnerships.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Focuses on developing foundational models for Indian languages.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            TechCrunch
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-27T13:55:37.152Z">2 hours ago</span>
+                    </div>
+                </article>
+                
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">📈</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Business</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">Sensex Hits Record High on RBI Rate Pause</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">RBI maintains repo rate at 6.5% for the sixth consecutive time.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Markets rally, led by banking and auto sector stocks.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Inflation projected to moderate, though food prices remain a concern.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            Economic Times
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-27T15:40:37.152Z">16 minutes ago</span>
+                    </div>
+                </article>
+                
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">🏥</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Health</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">National Digital Health Mission Expands to Rural Areas</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Over 50 million ABHA (Health IDs) generated in tier-3 cities.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Telemedicine consultations see a 40% month-over-month increase.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Integration with local PHCs aims to streamline patient records.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            Indian Express
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-27T10:55:37.152Z">5 hours ago</span>
+                    </div>
+                </article>
+                
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">🏏</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Sports</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">BCCI Announces New Media Rights Deal Structure</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Separate packages for linear TV and digital streaming rights.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Valuation expected to exceed previous cycle by 25%.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">New focus on regional language broadcasts for wider reach.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            Cricinfo
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-26T15:55:37.152Z">yesterday</span>
+                    </div>
+                </article>
+                
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">🚀</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">Technology</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">ISRO Outlines Next Lunar Mission Objectives</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Chandrayaan-4 planned for sample return mission.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Collaboration with JAXA for polar exploration confirmed.</span>
+                    </li>
+                
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">Target launch window set for 2027-2028.</span>
+                    </li>
+                
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            SpaceNews
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="2026-07-27T15:10:37.152Z">46 minutes ago</span>
+                    </div>
+                </article>
+                </div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg mt-stack-lg bg-background dark:bg-background border-t border-outline-variant flex flex-col items-center justify-center px-margin-mobile text-center">
+<p class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim mb-4">Powered by AI • Built with n8n</p>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Check system preference for dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            const newColorScheme = event.matches ? "dark" : "light";
+            if(newColorScheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                 document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Dummy Data payload simulating n8n output
+        const dummyNewsData = [
+            {
+                id: "pol-1",
+                category: "Politics",
+                emoji: "🏛️",
+                headline: "Parliament Passes Sweeping Data Protection Bill",
+                summary: [
+                    "Establishes strict guidelines for cross-border data transfer.",
+                    "Mandates explicit user consent for processing personal data.",
+                    "Creates Data Protection Board to oversee compliance and impose fines."
+                ],
+                source: "The Hindu",
+                time: new Date(Date.now() - 1000 * 60 * 30).toISOString() // 30 mins ago
+            },
+            {
+                id: "tech-1",
+                category: "Technology",
+                emoji: "💻",
+                headline: "India's AI Mission Gets $1.2B Funding Boost",
+                summary: [
+                    "Cabinet approves massive investment to build compute capacity.",
+                    "Aims to procure 10,000+ GPUs for public-private partnerships.",
+                    "Focuses on developing foundational models for Indian languages."
+                ],
+                source: "TechCrunch",
+                time: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString() // 2 hours ago
+            },
+            {
+                id: "biz-1",
+                category: "Business",
+                emoji: "📈",
+                headline: "Sensex Hits Record High on RBI Rate Pause",
+                summary: [
+                    "RBI maintains repo rate at 6.5% for the sixth consecutive time.",
+                    "Markets rally, led by banking and auto sector stocks.",
+                    "Inflation projected to moderate, though food prices remain a concern."
+                ],
+                source: "Economic Times",
+                time: new Date(Date.now() - 1000 * 60 * 15).toISOString() // 15 mins ago
+            },
+             {
+                id: "hlth-1",
+                category: "Health",
+                emoji: "🏥",
+                headline: "National Digital Health Mission Expands to Rural Areas",
+                summary: [
+                    "Over 50 million ABHA (Health IDs) generated in tier-3 cities.",
+                    "Telemedicine consultations see a 40% month-over-month increase.",
+                    "Integration with local PHCs aims to streamline patient records."
+                ],
+                source: "Indian Express",
+                time: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString() // 5 hours ago
+            },
+             {
+                id: "spt-1",
+                category: "Sports",
+                emoji: "🏏",
+                headline: "BCCI Announces New Media Rights Deal Structure",
+                summary: [
+                    "Separate packages for linear TV and digital streaming rights.",
+                    "Valuation expected to exceed previous cycle by 25%.",
+                    "New focus on regional language broadcasts for wider reach."
+                ],
+                source: "Cricinfo",
+                time: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString() // 1 day ago
+            },
+            {
+                id: "tech-2",
+                category: "Technology",
+                emoji: "🚀",
+                headline: "ISRO Outlines Next Lunar Mission Objectives",
+                summary: [
+                    "Chandrayaan-4 planned for sample return mission.",
+                    "Collaboration with JAXA for polar exploration confirmed.",
+                    "Target launch window set for 2027-2028."
+                ],
+                source: "SpaceNews",
+                time: new Date(Date.now() - 1000 * 60 * 45).toISOString() // 45 mins ago
+            }
+        ];
+
+        let lastFetchTime = null;
+
+        // Helper function for relative time
+        function getRelativeTime(dateString) {
+            const date = new Date(dateString);
+            const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+            const daysDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+            const hoursDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60 * 60));
+            const minutesDifference = Math.round((date.getTime() - new Date().getTime()) / (1000 * 60));
+
+            if (Math.abs(minutesDifference) < 60) {
+                return rtf.format(minutesDifference, 'minute');
+            } else if (Math.abs(hoursDifference) < 24) {
+                return rtf.format(hoursDifference, 'hour');
+            } else {
+                return rtf.format(daysDifference, 'day');
+            }
+        }
+
+        // Generate Skeleton HTML
+        function getSkeletonHTML() {
+            let html = '';
+            for(let i=0; i<6; i++) {
+                html += `
+                <div class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="skeleton h-6 w-6 rounded-full"></div>
+                        <div class="skeleton h-4 w-20 rounded"></div>
+                    </div>
+                    <div class="skeleton h-6 w-3/4 rounded mb-2"></div>
+                    <div class="skeleton h-6 w-1/2 rounded mb-4"></div>
+                    
+                    <div class="space-y-2 mb-6 flex-grow">
+                        <div class="skeleton h-4 w-full rounded"></div>
+                        <div class="skeleton h-4 w-full rounded"></div>
+                        <div class="skeleton h-4 w-5/6 rounded"></div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30">
+                        <div class="skeleton h-4 w-24 rounded"></div>
+                        <div class="skeleton h-4 w-16 rounded"></div>
+                    </div>
+                </div>
+                `;
+            }
+            return html;
+        }
+
+        // Render Cards
+        function renderCards(data) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = ''; // Clear skeletons
+
+            data.forEach(item => {
+                const summaryList = item.summary.map(point => `
+                    <li class="flex gap-2 items-start">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                        <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">${point}</span>
+                    </li>
+                `).join('');
+
+                const cardHTML = `
+                <article class="bg-surface-container-lowest dark:bg-inverse-surface rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-none border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">${item.emoji}</span>
+                        <span class="px-2 py-1 bg-surface-variant dark:bg-surface-container-high rounded text-on-surface-variant dark:text-on-surface font-label-sm text-label-sm">${item.category}</span>
+                    </div>
+                    
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-on-primary mb-4">${item.headline}</h3>
+                    
+                    <ul class="space-y-3 mb-6 flex-grow">
+                        ${summaryList}
+                    </ul>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-auto">
+                        <span class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-[16px]">newspaper</span>
+                            ${item.source}
+                        </span>
+                        <span class="font-label-sm text-label-sm text-outline dark:text-outline-variant" data-time="${item.time}">
+                            ${getRelativeTime(item.time)}
+                        </span>
+                    </div>
+                </article>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Fetch Data Simulation
+        async function fetchLatestNews() {
+            const grid = document.getElementById('news-grid');
+            const errorState = document.getElementById('error-state');
+            
+            errorState.classList.add('hidden');
+            grid.style.display = 'grid';
+            grid.innerHTML = getSkeletonHTML();
+
+            try {
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Simulate occasional error
+                // if(Math.random() < 0.2) throw new Error("Network error");
+                
+                renderCards(dummyNewsData);
+                
+                lastFetchTime = new Date();
+                updateLastUpdatedTime();
+
+            } catch (err) {
+                grid.style.display = 'none';
+                errorState.classList.remove('hidden');
+            }
+        }
+
+        function updateLastUpdatedTime() {
+            if(!lastFetchTime) return;
+            const updatedEl = document.getElementById('last-updated');
+            const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto', style: 'narrow' });
+            
+            const minutesDifference = Math.round((lastFetchTime.getTime() - new Date().getTime()) / (1000 * 60));
+            
+            if (minutesDifference === 0) {
+                 updatedEl.textContent = 'Updated just now';
+            } else {
+                 updatedEl.textContent = `Updated ${rtf.format(minutesDifference, 'minute')}`;
+            }
+        }
+
+        // Initial fetch
+        fetchLatestNews();
+
+        // Refresh periodically (simulated: updates relative times on UI)
+        setInterval(() => {
+            // Update the global "last updated" text
+            updateLastUpdatedTime();
+            
+            // Update individual card times
+            document.querySelectorAll('[data-time]').forEach(el => {
+                el.textContent = getRelativeTime(el.getAttribute('data-time'));
+            });
+        }, 60000); // Check every minute
+
+    </script>
+
+
+</body></html>

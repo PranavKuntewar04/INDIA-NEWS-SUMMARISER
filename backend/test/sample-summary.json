@@ -1,0 +1,35 @@
+{
+  "id": "summary_2026-07-27T11-00-00Z",
+  "timestamp": "2026-07-27T11:00:00Z",
+  "generatedAt": "2026-07-27T11:02:34Z",
+  "sourcesUsed": [
+    "indiatoday.in",
+    "ndtv.com"
+  ],
+  "totalArticlesProcessed": 47,
+  "totalArticlesAfterDedup": 32,
+  "categories": [
+    {
+      "name": "Politics",
+      "icon": "🏛️",
+      "articleCount": 6,
+      "summaryPoints": [
+        "Parliament passed the new bill.",
+        "Election commission announced dates."
+      ],
+      "sources": [
+        {
+          "title": "Parliament passes new bill",
+          "url": "https://www.example.com",
+          "source": "ndtv.com",
+          "publishedAt": "2026-07-27T09:30:00Z"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "modelUsed": "gpt-4o",
+    "pipelineDurationMs": 45200,
+    "errors": []
+  }
+}

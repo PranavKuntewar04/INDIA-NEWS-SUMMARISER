@@ -195,6 +195,7 @@
       "parameters": {
         "method": "POST",
         "url": "={{$vars.BACKEND_API_URL}}/api/summary",
+        "sendHeaders": true,
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{JSON.stringify($json)}}",

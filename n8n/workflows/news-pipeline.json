@@ -194,17 +194,17 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "={{$vars.VERCEL_APP_URL}}/api/summary",
+        "url": "https://india-news-summariser.vercel.app/api/summary",
         "sendHeaders": true,
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{JSON.stringify($json)}}",
         "options": {},
-        "headerParametersUi": {
-          "parameter": [
+        "headerParameters": {
+          "parameters": [
             {
               "name": "X-API-Key",
-              "value": "={{$vars.API_KEY}}"
+              "value": "b2e9f050126c2303e247fedc31e4dd2d798b7cc46234feef421fc99b10277bb5"
             },
             {
               "name": "Content-Type",

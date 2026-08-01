@@ -194,7 +194,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://india-news-summariser.vercel.app/api/summary",
+        "url": "http://localhost:3000/api/summary",
         "sendHeaders": true,
         "sendBody": true,
         "specifyBody": "json",
